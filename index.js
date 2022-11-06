@@ -2,7 +2,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+require("dotenv").config();
 
 // initialising app and paths
 const app = express();
@@ -13,7 +14,7 @@ app.use(express.static("public"))
 app.set("views", path.join(__dirname, "/public/views"))
 
 // db connection
-mongoose.connect("mongodb+srv://admin-sunny:Todo9139@cluster0.qsfwkfe.mongodb.net/todolistDB?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(res => console.log("DB connected"))
   .catch(err => console.log("DB connection failure"))
 
